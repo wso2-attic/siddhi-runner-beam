@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Siddhi-Execution-Beam-Test-Suite">
+    <test name="Siddhi-execution-beam-tests" enabled="true" preserve-order="true" parallel="false">
+        <classes>
+            <!--<class name="TestCaseOfBeamStreamProcessor"/>-->
+            <class name="org.wso2.siddhi.runner.beam.MultiParDoTestCase"/>
+            <class name="org.wso2.siddhi.runner.beam.FlattenWithoutWindowTestCase"/>
+            <class name="org.wso2.siddhi.runner.beam.FlattenWithWindowTestCase"/>
+            <class name="org.wso2.siddhi.runner.beam.GroupByKeyTestCase"/>
+            <class name="org.wso2.siddhi.runner.beam.PardoLetterCountTestCase"/>
+            <class name="org.wso2.siddhi.runner.beam.FixedWindowTestCase"/>
+        </classes>
+    </test>
+</suite>
