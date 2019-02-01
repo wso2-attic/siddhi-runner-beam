@@ -107,13 +107,11 @@ public class GraphVisitor extends Pipeline.PipelineVisitor.Defaults {
         return DirectGraph.create(perElementConsumers, rootTransforms);
     }
 
-    protected static String genSpaces(int n) {
+    private static String genSpaces(int n) {
         StringBuilder builder = new StringBuilder();
-
         for (int i = 0; i < n; ++i) {
             builder.append("|   ");
         }
-
         return builder.toString();
     }
 

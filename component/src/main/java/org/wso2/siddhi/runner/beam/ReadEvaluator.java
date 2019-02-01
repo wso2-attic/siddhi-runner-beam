@@ -34,11 +34,11 @@ public class ReadEvaluator<T> {
 
     private AppliedPTransform<PBegin, PCollection<T>, PTransform<PBegin, PCollection<T>>> transform;
 
-    ReadEvaluator(AppliedPTransform<PBegin, PCollection<T>, PTransform<PBegin, PCollection<T>>> transform) {
+    public ReadEvaluator(AppliedPTransform<PBegin, PCollection<T>, PTransform<PBegin, PCollection<T>>> transform) {
         this.transform = transform;
     }
 
-    void execute(int parallels) throws Exception {
+    public void execute(int parallels) throws Exception {
         Read.Bounded<T> boundedInput = (Read.Bounded<T>) this.transform.getTransform();
         BoundedSource<T> source = boundedInput.getSource();
         SourceWrapper sourceWrapper = new SourceWrapper(source, parallels, transform.getPipeline().getOptions());

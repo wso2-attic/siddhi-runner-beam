@@ -54,7 +54,6 @@ public class SiddhiAppContainer {
 
     private static final Logger log = LoggerFactory.getLogger(SiddhiAppContainer.class);
     private SiddhiAppRuntime runtime;
-//    private CommittedBundle bundle;
     private List<String> streamDefinitions = new LinkedList<>();
     private List<String> queryDefinitions = new LinkedList<>();
     private Map<String, AppliedPTransform> transformsMap = new HashMap<>();
@@ -82,7 +81,7 @@ public class SiddhiAppContainer {
 
     public void createSiddhiRuntime() throws SiddhiParserException {
         try {
-            log.info("Creating Siddhi Runtime");
+            log.debug("Creating Siddhi Runtime");
             SiddhiManager siddhiManager = new SiddhiManager();
             StringBuilder siddhiApp = new StringBuilder();
             this.streamDefinitions.forEach(siddhiApp::append);
@@ -100,22 +99,18 @@ public class SiddhiAppContainer {
     }
 
     private void generateSiddhiQueryForTransform(AppliedPTransform transform, PCollection keyCollection) {
-        /*
-        If transform is not in HashMap
-         */
+
+        //If transform is not in HashMap
         if (this.transformsMap.get(SiddhiAppContainer.generateTransformName(transform.getFullName())) == null) {
-            /*
-            Add stream definition and to HashMap for given transform
-             */
+
+            // Add stream definition and to HashMap for given transform
             String streamName = SiddhiAppContainer.generateTransformName(transform.getFullName()) + "Stream";
             String stream = "define stream " + streamName + " (event object);";
             this.streamDefinitions.add(stream);
             this.transformsMap.put(SiddhiAppContainer.generateTransformName(transform.getFullName()), transform);
             this.collectionsMap.put(SiddhiAppContainer.generateTransformName(transform.getFullName()), keyCollection);
 
-            /*
-            Create queries for each transform mapped by output collections
-             */
+            //Create queries for each transform mapped by output collections
             if (transform.getOutputs().isEmpty()) {
                 if (transform.getTransform() instanceof TextIO.Write) {
                     String sinkType = "text";
@@ -131,10 +126,9 @@ public class SiddhiAppContainer {
                         String filePath = provider.get().toString();
                         this.queryDefinitions.add(generateSinkQuery(sinkType, streamName, sinkStreamName));
                         this.streamDefinitions.add(generateSinkStream(sinkType, sinkStreamName, filePath));
-                    } catch (NoSuchMethodException | SecurityException exception) {
-                        log.error(exception.getMessage(), exception);
                     } catch (Exception exception) {
-                        log.error(exception.getMessage(), exception);
+                        //TODO look into exception listener
+                        log.error("Unable to retrieve file write destination ", exception.getMessage(), exception);
                     }
                 }
             } else {
