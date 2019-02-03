@@ -40,7 +40,7 @@ import java.io.IOException;
 
 public class PardoLetterCountTestCase {
 
-    String rootPath, source, sink;
+    private String rootPath, source, sink;
 
     @BeforeClass
     public void init() {

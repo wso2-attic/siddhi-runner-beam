@@ -46,7 +46,6 @@ public class GraphVisitor extends Pipeline.PipelineVisitor.Defaults {
     private Set<AppliedPTransform<?, ?, ?>> rootTransforms = new HashSet<>();
     private Multimap<PInput, AppliedPTransform<?, ?, ?>> perElementConsumers = HashMultimap.create();
     private Multimap<PValue, AppliedPTransform<?, ?, ?>> allConsumers = HashMultimap.create();
-    private int numTransforms = 0;
     private int depth;
 
     public CompositeBehavior enterCompositeTransform(Node node) {

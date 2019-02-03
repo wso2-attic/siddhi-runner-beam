@@ -71,7 +71,7 @@
         <beam.version>2.8.0</beam.version>
         <commons.version>4.1</commons.version>
         <siddhi.io.file.version>1.0.14</siddhi.io.file.version>
-        <siddhi.map.text.version></siddhi.map.text.version>
+        <siddhi.map.text.version>1.0.22</siddhi.map.text.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -143,12 +143,12 @@
             <dependency>
                 <groupId>org.wso2.extension.siddhi.io.file</groupId>
                 <artifactId>siddhi-io-file</artifactId>
-                <version>1.0.14</version>
+                <version>${siddhi.io.file.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.wso2.extension.siddhi.map.text</groupId>
                 <artifactId>siddhi-map-text</artifactId>
-                <version>1.0.22</version>
+                <version>${siddhi.map.text.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

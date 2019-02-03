@@ -123,9 +123,8 @@ public class BeamParDoProcessor extends StreamProcessor {
         } else {
             throw new SiddhiAppCreationException("First parameter must be a variable object type");
         }
-        /*
-         * Get beam transform here and create DoFnOperator
-         */
+
+        //Get beam transform here and create DoFnOperator
         try {
             if (attributeExpressionExecutors[1].getReturnType() == Attribute.Type.STRING
                     && attributeExpressionExecutors[1] instanceof ConstantExpressionExecutor) {

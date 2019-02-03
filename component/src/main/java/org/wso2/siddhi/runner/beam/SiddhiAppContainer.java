@@ -65,7 +65,7 @@ public class SiddhiAppContainer {
     public SiddhiAppContainer() { }
 
     public void createSiddhiQuery() {
-        log.info("Creating Siddhi Query");
+        log.debug("Creating Siddhi Query");
         ExecutionContext context = ExecutionContext.getInstance();
         this.graph = context.getGraph();
         for (CommittedBundle rootBundle: context.getRootBundles()) {
@@ -116,9 +116,11 @@ public class SiddhiAppContainer {
                     String sinkType = "text";
                     String sinkStreamName = "textSinkStream"
                             + (multiSinkcount == 1 ? "" : String.valueOf(multiSinkcount));
+                    //TODO look into exception listener
+                    Class<?> cls;
                     try {
                         TextIO.TypedWrite textio = ((TextIO.Write) transform.getTransform()).withOutputFilenames();
-                        Class<?> cls = textio.getClass();
+                        cls = textio.getClass();
                         Method getFileNamePrefix = cls.getDeclaredMethod("getFilenamePrefix");
                         getFileNamePrefix.setAccessible(true);
                         ValueProvider.StaticValueProvider provider =
@@ -126,8 +128,9 @@ public class SiddhiAppContainer {
                         String filePath = provider.get().toString();
                         this.queryDefinitions.add(generateSinkQuery(sinkType, streamName, sinkStreamName));
                         this.streamDefinitions.add(generateSinkStream(sinkType, sinkStreamName, filePath));
+                    } catch (NoSuchMethodException | SecurityException exception) {
+                        log.error("Unable to retrieve method from class", exception.getMessage(), exception);
                     } catch (Exception exception) {
-                        //TODO look into exception listener
                         log.error("Unable to retrieve file write destination ", exception.getMessage(), exception);
                     }
                 }

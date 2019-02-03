@@ -1,4 +1,4 @@
-# API Docs - v0.1.0-SNAPSHOT
+# API Docs - v1.0.0-SNAPSHOT
 
 ## Beam
 

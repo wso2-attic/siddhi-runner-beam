@@ -41,7 +41,7 @@ import java.io.IOException;
 
 public class PartitionTestCase {
 
-    String rootPath, source, sink, sink2;
+    private String rootPath, source, sink, sink2;
 
     @BeforeClass
     public void init() {
