@@ -97,9 +97,7 @@ public class BeamSinkProcessor extends StreamProcessor {
     protected List<Attribute> init(AbstractDefinition inputDefinition,
                                    ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
                                    SiddhiAppContext siddhiAppContext) {
-
         List<Attribute> attributes = new LinkedList<>();
-
         if (attributeExpressionLength != 1) {
             throw new SiddhiAppCreationException("Only 1 parameters can be specified for BeamSinkProcessor");
         } else {

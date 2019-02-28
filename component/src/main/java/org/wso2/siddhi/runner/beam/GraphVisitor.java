@@ -62,18 +62,15 @@ public class GraphVisitor extends Pipeline.PipelineVisitor.Defaults {
             }
             return CompositeBehavior.DO_NOT_ENTER_TRANSFORM;
         }
-        log.info("{} enterCompositeTransform- {}", genSpaces(this.depth), node.getFullName());
         ++this.depth;
         return CompositeBehavior.ENTER_TRANSFORM;
     }
 
     public void leaveCompositeTransform(Node node) {
         --this.depth;
-        log.info("{} leaveCompositeTransform- {}", genSpaces(this.depth), node.getFullName());
     }
 
     public void visitPrimitiveTransform(Node node) {
-        log.info("{} visitPrimitiveTransform- {}", genSpaces(this.depth), node.getFullName());
 
         AppliedPTransform appliedPTransform = this.getAppliedTransform(node);
         if (node.getInputs().isEmpty()) {
@@ -104,14 +101,6 @@ public class GraphVisitor extends Pipeline.PipelineVisitor.Defaults {
 
     public DirectGraph getGraph() {
         return DirectGraph.create(perElementConsumers, rootTransforms);
-    }
-
-    private static String genSpaces(int n) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < n; ++i) {
-            builder.append("|   ");
-        }
-        return builder.toString();
     }
 
 

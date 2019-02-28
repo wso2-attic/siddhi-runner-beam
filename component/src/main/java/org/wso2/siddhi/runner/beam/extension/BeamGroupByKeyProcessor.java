@@ -79,8 +79,6 @@ public class BeamGroupByKeyProcessor<K, V> extends StreamProcessor {
                            StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater) {
 
         ComplexEventChunk<StreamEvent> complexEventChunk = new ComplexEventChunk<>(false);
-        //TODO use lock instead
-        //TODO check thread safety
         Map<K, List<V>> groupByKeyMap = new HashMap<>();
         synchronized (this) {
             try {
@@ -107,7 +105,7 @@ public class BeamGroupByKeyProcessor<K, V> extends StreamProcessor {
                     complexEventChunk.add(streamEvent);
                 }
             } catch (Exception e) {
-                log.error(e.getMessage());
+                log.error("Unable to perform GroupByKey operation ", e.getMessage(), e);
             }
         }
         nextProcessor.process(complexEventChunk);
@@ -120,12 +118,9 @@ public class BeamGroupByKeyProcessor<K, V> extends StreamProcessor {
                                    ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
                                    SiddhiAppContext siddhiAppContext) {
 
-        //TODO get length of attributeExpressionExecutors
-        //TODO check instance type(variable or constant)
         if (attributeExpressionLength != 1) {
             throw new SiddhiAppCreationException(
-                    "Only one parameter can be specified for BeamGroupByKeyProcessor but "
-                            + attributeExpressionLength
+                    "Only one parameter can be specified for BeamGroupByKeyProcessor but " + attributeExpressionLength
                             + " were given"
             );
         }

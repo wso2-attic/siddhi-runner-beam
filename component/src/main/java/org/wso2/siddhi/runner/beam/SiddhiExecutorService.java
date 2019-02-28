@@ -36,17 +36,15 @@ public class SiddhiExecutorService {
     }
 
     void start(DirectGraph graph) {
-        log.info("Starting Siddhi Runner");
+        log.debug("Starting Siddhi Runner");
         ExecutionContext context = ExecutionContext.getInstance();
         context.setGraph(graph);
         try {
-
             // Generate sources from root transforms
             for (AppliedPTransform rootTransform: graph.getRootTransforms()) {
                 ReadEvaluator evaluator = new ReadEvaluator(rootTransform);
                 evaluator.execute(this.targetParallelism);
             }
-
             // Create SiddhiAppRuntime
             SiddhiAppContainer executionRuntime = new SiddhiAppContainer();
             executionRuntime.createSiddhiQuery();
@@ -54,9 +52,8 @@ public class SiddhiExecutorService {
             context.setCollectionsMap(executionRuntime.getCollectionsMap());
             context.setAdditionalOutputTags(executionRuntime.getAdditionalOutputTags());
             executionRuntime.createSiddhiRuntime();
-
             // Emit elements to SiddhiAppContainer
-            log.info("Executing pipeline");
+            log.debug("Executing pipeline");
             for (CommittedBundle<SourceWrapper> rootBundle: context.getRootBundles()) {
                 SourceWrapper source = rootBundle.getSourceWrapper();
                 source.open();

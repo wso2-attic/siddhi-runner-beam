@@ -116,7 +116,6 @@ public class SiddhiAppContainer {
                     String sinkType = "text";
                     String sinkStreamName = "textSinkStream"
                             + (multiSinkcount == 1 ? "" : String.valueOf(multiSinkcount));
-                    //TODO look into exception listener
                     Class<?> cls;
                     try {
                         TextIO.TypedWrite textio = ((TextIO.Write) transform.getTransform()).withOutputFilenames();

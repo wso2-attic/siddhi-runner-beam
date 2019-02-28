@@ -61,7 +61,6 @@ public class SourceWrapper<OutputT> {
     }
 
     public void run(InputHandler inputHandler) throws InterruptedException {
-
         // Run the source to emit each element to DoFnOperator delegate
         try {
             for (BoundedReader<OutputT> reader: this.localReaders) {

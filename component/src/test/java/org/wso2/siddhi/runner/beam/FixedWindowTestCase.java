@@ -49,8 +49,6 @@ import java.util.Iterator;
 
 public class FixedWindowTestCase {
 
-    //TODO no windows get created here
-
     private String rootPath, source, sink;
 
     @BeforeClass
