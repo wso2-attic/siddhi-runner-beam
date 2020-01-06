@@ -1,10 +1,13 @@
 # siddhi-runner-beam
 
+
 **siddhi-runner-beam** is a java library that executes a pipeline from <a target="_blank" href="https://beam.apache.org/">Apache Beam</a> in <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a>.
 
-## How to Use
+## How to use
 
-* Add the runner library as a maven dependancy along with other Beam dependancies.
+### Step 1: Add the runner library as a maven dependancy along with other Beam dependancies
+
+This is done as follows:
 
 ```
      <dependency>
@@ -14,7 +17,9 @@
      </dependency>
 ```
 
-* Set the runner of the pipeline as _SiddhiRunner_.
+### Step 2: Set the runner of the pipeline as _SiddhiRunner_
+
+This is done as follows:
 
 ```
      //SiddhiPipelineOptions is defined
@@ -24,7 +29,7 @@
 
 ## Features
 
-Below is the list of transforms that are currently supported.
+The following is the list of transformations that are currently supported.
 
 * ParDo
 * GroupByKey
@@ -33,5 +38,3 @@ Below is the list of transforms that are currently supported.
 * Partition
 * TextIO
 
-
- 
