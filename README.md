@@ -1,29 +1,40 @@
 # siddhi-runner-beam
 
-The siddhi-runner-beam is a feature that allows you to execute a Beam pipeline via Siddhi. When the Beam program is set to Siddhi runner, a siddhi application is created and deployed and the pipeline is executed.
 
-Siddhi runner currently performs the following Beam transformations:
+**siddhi-runner-beam** is a java library that executes a pipeline from <a target="_blank" href="https://beam.apache.org/">Apache Beam</a> in <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a>.
 
-+ ParDo
-+ GroupByKey
-+ Fixed Windowing
-+ TextIO
-+ Flatten
-+ Partition
+## How to use
 
-In order to execute a Beam pipeline, you can create a Maven project and then follow the steps below:
+### Step 1: Add the runner library as a maven dependancy along with other Beam dependancies
 
-## Step 1: Define a Beam pipeline
+This is done as follows:
 
-For detailed instructions to define a Beam pipeline, see [Apache Beam Documentation - Create Your Pipeline.](https://beam.apache.org/documentation/pipelines/create-your-pipeline/)
-
-## Step 2: Set the runner
-
-In your Maven project, add the following class to set the runner as `SiddhiRunner`.
-
-```java
-//SiddhiPipelineOptions is defined
-SiddhiPipelineOptions options = PipelineOptionsFactory.as(SiddhiPipelineOptions.class);
-options.setRunner(SiddhiRunner.class);
 ```
+     <dependency>
+        <groupId>org.wso2.siddhi.runner.beam</groupId>
+        <artifactId>siddhi-runner-beam</artifactId>
+        <version>x.x.x</version>
+     </dependency>
+```
+
+### Step 2: Set the runner of the pipeline as _SiddhiRunner_
+
+This is done as follows:
+
+```
+     //SiddhiPipelineOptions is defined
+     SiddhiPipelineOptions options = PipelineOptionsFactory.as(SiddhiPipelineOptions.class);
+     options.setRunner(SiddhiRunner.class);
+```
+
+## Features
+
+The following is the list of transformations that are currently supported.
+
+* ParDo
+* GroupByKey
+* FixedWindow
+* Flatten
+* Partition
+* TextIO
 
