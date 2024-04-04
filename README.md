@@ -1,5 +1,7 @@
-# siddhi-runner-beam
+# NOTE
+Siddhi-runner-beam is deprecated and is no longer maintained. This will be moved to the attic.
 
+# siddhi-runner-beam
 
 **siddhi-runner-beam** is a java library that executes a pipeline from <a target="_blank" href="https://beam.apache.org/">Apache Beam</a> in <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a>.
 
